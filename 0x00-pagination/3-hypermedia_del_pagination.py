@@ -43,20 +43,20 @@ class Server:
         """
         Retrieve pagination details with resilience to deletions.
         """
-        assert isinstance(index, int) and index >= 0,
-        assert isinstance(page_size, int) and page_size > 0,
-
-        indexed_data = self.indexed_dataset()
-        dataset_size = len(indexed_data)
-
-        data = []
-        current_index = index
-        while len(data) < page_size and current_index < dataset_size:
-            if current_index in indexed_data:
-                data.append(indexed_data[current_index])
-            current_index += 1
-
-        next_index = current_index if current_index < dataset_size else None
+        data = self.indexed_dataset()
+        assert index is not None and index >= 0 and index <= max(data.keys())
+        page_data = []
+        data_indexed = 0
+        next_index = None
+        start_index = index if index else 0
+        for i, item in data.items():
+            if i >= start_index and data_indexed < page_size:
+                page_data.append(item)
+                data_indexed += 1
+                continue
+            if data_indexed == page_size:
+                next_index = i
+                break
         return {
                 "index": index,
                 "next_index": next_index,
