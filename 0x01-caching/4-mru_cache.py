@@ -14,7 +14,7 @@ class MRUCache(BaseCaching):
         initializing class
         """
         super().__init__()
-        self.order = []
+        self.mru_order = []
 
     def put(self, key, item):
         """
@@ -23,7 +23,7 @@ class MRUCache(BaseCaching):
         if key is None or item is None:
             return
         if key in self.cache_data:
-            self.order.remove(key)
+            self.mru_order.remove(key)
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
             mru_key = self.order.pop()
             del self.cache_data[mru_key]
