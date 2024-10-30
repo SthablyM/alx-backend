@@ -1,17 +1,17 @@
 #!/usr/bin/python3
 """
-class  MRUCache that inherits from BaseCaching and is a caching system
+MRUCache
 """
 from base_caching import BaseCaching
 
 
 class MRUCache(BaseCaching):
     """
-    MRUCache that inherits from BaseCaching
+    class MRUCache that inherits from BaseCaching
     """
     def __init__(self):
         """
-        initializing class
+        assign to the dictionary
         """
         super().__init__()
         self.mru_order = []
@@ -20,21 +20,24 @@ class MRUCache(BaseCaching):
         """
         assign to the dictionary
         """
+
         if key is None or item is None:
             return
         if key in self.cache_data:
             self.mru_order.remove(key)
-        if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            mru_key = self.order.pop()
+        elif len(self.cache_data) >= BaseCaching.MAX_ITEMS:
+            mru_key = self.mru_order.pop()
             del self.cache_data[mru_key]
             print(f"DISCARD: {mru_key}")
         self.cache_data[key] = item
         self.mru_order.append(key)
 
     def get(self, key):
-        """ Get an item by key """
+        """
+        Must return the value in self.cache_data linked to key.
+        """
         if key is None or key not in self.cache_data:
             return None
         self.mru_order.remove(key)
-        self.mru_order.append(key) 
+        self.mru_order.append(key)
         return self.cache_data[key]
