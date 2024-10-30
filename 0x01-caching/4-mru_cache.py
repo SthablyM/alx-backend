@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 """
-class  LRUCache that inherits from BaseCaching and is a caching system
+class  MRUCache that inherits from BaseCaching and is a caching system
 """
 from base_caching import BaseCaching
 
 
-class LRUCache(BaseCaching):
+class MRUCache(BaseCaching):
     """
-    LRUCache that inherits from BaseCaching
+    MRUCache that inherits from BaseCaching
     """
     def __init__(self):
         """
@@ -25,17 +25,16 @@ class LRUCache(BaseCaching):
         if key in self.cache_data:
             self.order.remove(key)
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            lru_key = self.order.pop(0)
-            del self.cache_data[lru_key]
-            print(f"DISCARD: {lru_key}")
+            mru_key = self.order.pop()
+            del self.cache_data[mru_key]
+            print(f"DISCARD: {mru_key}")
         self.cache_data[key] = item
-        self.order.append(key)i
+        self.order.append(key)
 
     def get(self, key):
-        """return the value in self.cache_data"""
+        """ Get an item by key """
         if key is None or key not in self.cache_data:
             return None
-        self.order.remove(key)
-        self.order.append(key)
-        
+        self.mru_order.remove(key)
+        self.mru_order.append(key) 
         return self.cache_data[key]
