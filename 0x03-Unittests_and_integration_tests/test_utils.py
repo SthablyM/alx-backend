@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
+"""class that inherits from unittest"""
 import unittest
 from parameterized import parameterized
 from utils import access_nested_map
 
 
 class TestAccessNestedMap(unittest.TestCase):
+    """'class for testing access_nestd_map function"""
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
         ({"a": {"b": 2}}, ("a",), {"b": 2}),
