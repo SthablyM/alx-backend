@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""setup a basic Flask app"""
 from flask_babel import Babel
 from flask import Flask, render_template
 
@@ -7,6 +8,9 @@ babel = Babel(app)
 
 
 @app.route('/')
+"""
+This is a basic Flask web application
+"""
 def home():
     return render_template("0-index.html")
 
