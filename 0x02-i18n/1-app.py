@@ -8,7 +8,10 @@ from datetime import datetime
 
 class Config:
     """Configuration of available language"""
-    LANGUAGES = {"en": "English", "fr": "French"}
+    LANGUAGES = ["en", "fr"]
+    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
+    SECRET_KEY = 'your_secret_key_here'
 
 
 app = Flask(__name__)
@@ -19,14 +22,14 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
-    """the locale from the user settings"""
-    return request.accept_languages.best_match(app.config['LANGUAGES'].keys())
+    """Determine the best match with the supported languages."""
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/')
 def home():
     """Render the home page with the specified HTML template."""
-    return render_template("1-index.html", utc_time=utc_now)
+    return render_template("1-index.html")
 
 
 if __name__ == "__main__":
