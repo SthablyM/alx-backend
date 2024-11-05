@@ -9,6 +9,9 @@ babel = Babel(app)
 
 @app.route('/')
 def home():
+    """
+    Render the home page with the specified HTML template
+    """
     return render_template("0-index.html")
 
 
