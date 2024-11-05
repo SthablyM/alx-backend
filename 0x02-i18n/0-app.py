@@ -8,9 +8,6 @@ babel = Babel(app)
 
 
 @app.route('/')
-"""
-This is a basic Flask web application
-"""
 def home():
     return render_template("0-index.html")
 
