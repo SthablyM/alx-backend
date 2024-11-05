@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Selection Example</title>
+</head>
+<body>
+    <h1>Welcome to the Language Selection App</h1>
+    <h2>Select Your Language</h2>
+    <ul>
+        {% for lang in languages %}
+            <li>{{ lang }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Default Language: {{ default_locale }}</h2>
+    <h2>Default Timezone: {{ default_timezone }}</h2>
+</body>
+</html>
