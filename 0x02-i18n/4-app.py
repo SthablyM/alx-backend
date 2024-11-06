@@ -22,7 +22,10 @@ def get_locale():
 
 
 @app.route('/')
-def index():
+def home():
+    """
+    Render the home page with the specified HTML template
+    """
     return render_template('4-index.html')
 
 
