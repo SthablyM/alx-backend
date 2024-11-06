@@ -7,13 +7,12 @@ app = Flask(__name__)
 babel = Babel(app)
 
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
-app.config['BABEL_DEFAULT_LOCALE'] = 'fr'
 
 
 @babel.localeselector
 def get_locale():
     """determine the language"""
-    return request.args.get('lang', 'en', 'fr')
+    return request.args.get('lang', 'en')
 
 
 @app.route('/')
